@@ -41,7 +41,6 @@ const PollCreationForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { pollId } = await createPoll(question, options);
-
     router.push(`/share/${pollId}`);
   };
 

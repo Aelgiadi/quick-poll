@@ -33,31 +33,39 @@ export const PollFormOptions = ({
       <FormLabel>Options</FormLabel>
       <Card variant='elevation' elevation={0} style={{ padding: '1em' }}>
         <Stack direction='column' spacing={2}>
-          {options.map((option, index) => (
-            <div
-              key={index}
-              style={{
-                display: 'flex',
-                gap: '1rem',
-                width: '100%',
-                alignItems: 'center',
-              }}
-            >
-              <TextField
-                placeholder='Enter an option...'
-                value={option}
-                onChange={(e) => onChangeOption(index, e.target.value)}
-                style={{ flex: 1 }}
-                onKeyDown={handleOptionEnter}
-              />
-              <IconButton
-                aria-label='remove'
-                onClick={() => onDeleteOption(index)}
+          {options.map((option, index) => {
+            let autoFocus = false;
+            if (index === options.length - 1) {
+              autoFocus = true;
+            }
+
+            return (
+              <div
+                key={index}
+                style={{
+                  display: 'flex',
+                  gap: '1rem',
+                  width: '100%',
+                  alignItems: 'center',
+                }}
               >
-                <CloseOutlined />
-              </IconButton>
-            </div>
-          ))}
+                <TextField
+                  autoFocus={autoFocus}
+                  placeholder='Enter an option...'
+                  value={option}
+                  onChange={(e) => onChangeOption(index, e.target.value)}
+                  style={{ flex: 1 }}
+                  onKeyDown={handleOptionEnter}
+                />
+                <IconButton
+                  aria-label='remove'
+                  onClick={() => onDeleteOption(index)}
+                >
+                  <CloseOutlined />
+                </IconButton>
+              </div>
+            );
+          })}
         </Stack>
         <Button
           startIcon={<Add />}

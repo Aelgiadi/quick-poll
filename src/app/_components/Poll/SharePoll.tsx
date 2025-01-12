@@ -15,7 +15,7 @@ import { usePoll } from '@/app/_storage/PollContext';
 
 export const SharePoll: React.FC = () => {
   const { pollId, poll } = usePoll();
-  const basePath = window.location.origin;
+  const basePath = window?.location.origin;
   const title = 'Check out the poll!';
 
   if (!poll || !pollId || !basePath) return null;
