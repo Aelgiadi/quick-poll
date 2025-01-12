@@ -40,11 +40,9 @@ const PollCreationForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const { pollId } = await createPoll(question, options);
+    const { pollId } = await createPoll(question, options);
 
-      router.push(`/share/${pollId}`);
-    } catch (err) {}
+    router.push(`/share/${pollId}`);
   };
 
   return (

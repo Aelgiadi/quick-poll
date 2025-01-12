@@ -12,9 +12,9 @@ import {
 
 interface Props {
   options: string[];
-  onDeleteOption: Function;
-  onAddOption: Function;
-  onChangeOption: Function;
+  onDeleteOption: (index: number) => void;
+  onAddOption: () => void;
+  onChangeOption: (index: number, value: string) => void;
 }
 export const PollFormOptions = ({
   options,

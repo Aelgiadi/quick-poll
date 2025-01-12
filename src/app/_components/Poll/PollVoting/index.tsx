@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import { CardContent, CardHeader, Stack, Button } from '@mui/material';
 
@@ -8,23 +8,14 @@ import { usePoll } from '../usePoll';
 
 export const PollWhileVoting = () => {
   const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
-  const poll = usePoll(setError);
+  const poll = usePoll();
 
   const handleVote = async (optionId: string) => {
     if (!poll) return;
 
-    try {
-      await voteForOption(poll.id, optionId);
-      router.push(`/results/${poll.id}`);
-    } catch (err) {
-      setError('Error submitting vote');
-    }
+    await voteForOption(poll.id, optionId);
+    router.push(`/results/${poll.id}`);
   };
-
-  if (error) {
-    return <div>{error}</div>;
-  }
 
   if (!poll) {
     return <div>Loading poll...</div>;
